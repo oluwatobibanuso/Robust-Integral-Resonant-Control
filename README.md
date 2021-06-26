@@ -1,2 +1,2 @@
 # Robust-IRC
-Robust IRC for High Precision Nanopositioning Systems
+Robust Integral Resonant Control (IRC) for High Precision Nanopositioning Systems
