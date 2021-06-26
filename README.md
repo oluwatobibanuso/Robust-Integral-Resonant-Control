@@ -1,2 +1,2 @@
 # Robust-IRC
-Robust IRC for High Precision Positioning Systems
+Robust IRC for High Precision Nanopositioning Systems
