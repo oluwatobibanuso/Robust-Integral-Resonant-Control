@@ -4,6 +4,8 @@ Robust Integral Resonant Control (IRC) for High Precision Nanopositioning System
 **
   UNDER DEVELOPMENT
 **
+
+
 Nanopositioning is a key enabling technology in a number of applications such as Scanning Probe Microscopy, nanomachining, nanolithography, MEMS / NEMS etc. Most nanopositioners employ piezoelectric actuators and as such their positioning performance is limited by: (i) Resonance-induced vibration and (ii) Nonlinearities:
 Hysteresis and Creep. 
 
