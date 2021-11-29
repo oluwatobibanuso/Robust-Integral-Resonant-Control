@@ -24,7 +24,7 @@ title('Magnitude Response')
 ```
 
 
-![figure_0.eps](sysID_images/figure_0.eps)
+![figure_0.png](sysID_images/figure_0.png)
 
 
 ```matlab:Code
@@ -37,7 +37,7 @@ title('Phase Response (radians)')
 ```
 
 
-![figure_1.eps](sysID_images/figure_1.eps)
+![figure_1.png](sysID_images/figure_1.png)
 
 
 
@@ -52,7 +52,6 @@ G = tfest(sys,8,6);
 
 
 ```matlab:Code
-figure
 opts = bodeoptions('cstprefs');
 opts.PhaseVisible = 'off';
 opts.FreqUnits = 'Hz';
@@ -68,11 +67,10 @@ Warning: Ignoring extra legend entries.
 ```
 
 
-![figure_2.eps](sysID_images/figure_2.eps)
+![figure_2.png](sysID_images/figure_2.png)
 
 
 ```matlab:Code
-
 opts = bodeoptions('cstprefs');
 opts.PhaseUnits = 'rad';
 opts.MagVisible = 'off';
@@ -84,7 +82,7 @@ legend('Nanopositioner ', 'Estimated System','Location','southwest')
 ```
 
 
-![figure_3.eps](sysID_images/figure_3.eps)
+![figure_3.png](sysID_images/figure_3.png)
 
 
 ```matlab:Code
@@ -188,5 +186,44 @@ bode(G_comp)
 ```
 
 
-![figure_4.eps](sysID_images/figure_4.eps)
+![figure_4.png](sysID_images/figure_4.png)
+
+  
+
+
+**Open Loop Simulation**
+
+
+
+```matlab:Code
+T = 2*(1/40);
+
+fs = 44100;
+t = 0:1/fs:T-1/fs;
+
+x = 1e-9*sawtooth(2*pi*40*t,1/2);
+x_model = lsim(G_comp,x,t);
+figure
+plot(t,x,t,x_model)
+axis('tight')
+grid on
+ylabel('Displacement (nm)')
+xlabel('time (seconds)')
+```
+
+
+![figure_5.png](sysID_images/figure_5.png)
+
+
+```matlab:Code
+error = x-x_model';
+figure 
+plot(t,error)
+axis('tight')
+ylabel('Displacement (nm)')
+xlabel('time (seconds)')
+```
+
+
+![figure_6.png](sysID_images/figure_6.png)
 
