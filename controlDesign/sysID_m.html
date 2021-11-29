@@ -1,0 +1,284 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>sysID_m</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-11-29"><meta name="DC.source" content="sysID_m.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clc
+clear
+load(<span class="string">'platform_resp.mat'</span>);
+</pre><pre class="codeinput"><span class="comment">%Read Magnitude and Phase Response from experimental data</span>
+Mag = abs(MagR);
+Phase = angle(MagR);
+</pre><pre class="codeinput">figure
+semilogx(Freq,20*log10(Mag));
+xlabel(<span class="string">'Frequency(Hz)'</span>)
+ylabel(<span class="string">'Magnitude(dB)'</span>)
+axis(<span class="string">'tight'</span>)
+title(<span class="string">'Magnitude Response'</span>)
+</pre><img vspace="5" hspace="5" src="sysID_m_01.png" alt=""> <pre class="codeinput">figure
+semilogx(Freq,Phase)
+xlabel(<span class="string">'Frequency(Hz)'</span>)
+ylabel(<span class="string">'Phase'</span>)
+axis(<span class="string">'tight'</span>)
+title(<span class="string">'Phase Response (radians)'</span>)
+</pre><img vspace="5" hspace="5" src="sysID_m_02.png" alt=""> <img vspace="5" hspace="5" src="sysID_m_03.png" alt=""> <p>From the Frequency Response plots, there are 4 resonant modes induced in the system, hence it is modelled as 8 pole and 6 zeros system as a results of the location of the peaks and shalows in the magnitude response.</p><pre class="codeinput">sys = frd(MagR,Freq*2*pi);
+G = tfest(sys,8,6);
+</pre><pre class="codeinput">opts = bodeoptions(<span class="string">'cstprefs'</span>);
+opts.PhaseVisible = <span class="string">'off'</span>;
+opts.FreqUnits = <span class="string">'Hz'</span>;
+semilogx(Freq,20*log10(Mag));
+hold <span class="string">on</span>
+bodeplot(G,opts,<span class="string">'red'</span>);
+legend(<span class="string">'Nanopositioner '</span>, <span class="string">'Estimated System'</span>,<span class="string">'Location'</span>,<span class="string">'southwest'</span>)
+</pre><pre class="codeoutput">Warning: Ignoring extra legend entries. 
+</pre><img vspace="5" hspace="5" src="sysID_m_04.png" alt=""> <pre class="codeinput">opts = bodeoptions(<span class="string">'cstprefs'</span>);
+opts.PhaseUnits = <span class="string">'rad'</span>;
+opts.MagVisible = <span class="string">'off'</span>;
+opts.FreqUnits = <span class="string">'Hz'</span>;
+semilogx(Freq,Phase);
+hold <span class="string">on</span>
+bodeplot(G,opts,<span class="string">'red'</span>);
+legend(<span class="string">'Nanopositioner '</span>, <span class="string">'Estimated System'</span>,<span class="string">'Location'</span>,<span class="string">'southwest'</span>)
+</pre><img vspace="5" hspace="5" src="sysID_m_05.png" alt=""> <pre class="codeinput">G <span class="comment">% estimated state space system</span>
+[r,p,k] = residue(G.Numerator,G.Denominator);
+</pre><pre class="codeoutput">
+G =
+ 
+                                                                           
+   1.342e07 s^6 + 3.938e10 s^5 + 3.42e16 s^4 + 5.328e19 s^3 + 1.854e25 s^2 
+                                                                           
+                                                    + 1.088e28 s + 1.928e33
+                                                                           
+  ---------------------------------------------------------------------------
+                                                                             
+  s^8 + 3199 s^7 + 2.738e09 s^6 + 4.857e12 s^5 + 1.656e18 s^4 + 1.219e21 s^3 
+                                                                             
+                                    + 2.091e26 s^2 + 2.136e28 s + 1.905e33   
+                                                                             
+ 
+Continuous-time identified transfer function.
+
+Parameterization:
+   Number of poles: 8   Number of zeros: 6
+   Number of free coefficients: 15
+   Use "tfdata", "getpvec", "getcov" for parameters and their uncertainties.
+
+Status:                                                
+Estimated using TFEST on frequency response data "sys".
+Fit to estimation data: 99.9%                          
+FPE: 2.326e-06, MSE: 2.323e-06                         
+</pre><pre class="codeinput">[num_1,den_1] = residue(r(1:2),p(1:2),0);
+G1 = tf(real(num_1(2)),den_1);
+</pre><p><img src="sysID_m_eq16437977295884184338.png" alt="$$G_{1}(s) = \frac{7.22e05}{s^{2} + 1644s + 1.935e09}$$"></p><pre class="codeinput">[num_2,den_2] = residue(r(3:4),p(3:4),0);
+G2 = tf(real(num_2(2)),den_2);
+</pre><p><img src="sysID_m_eq14284538796383986434.png" alt="$$G_{2}(s)= \frac{1.253e06}{s^{2} + 997s + 6.316e08}$$"></p><pre class="codeinput">[num_3,den_3] = residue(r(5:6),p(5:6),0);
+G3 = tf(real(num_3(2)),den_3);
+</pre><p><img src="sysID_m_eq14540787318131601678.png" alt="$$G_{3}(s)= \frac{1.578e06}{s^{2} + 502.4s + 1.579e08}$$"></p><pre class="codeinput">[num_4,den_4] = residue(r(7:8),p(7:8),0);
+G4 = tf(real(num_4(2)),den_4);
+</pre><p><img src="sysID_m_eq00863511461775441161.png" alt="$$G_{4}(s)= \frac{9.87e06}{s^{2} + 55.29s + 9.87e06}$$"></p><pre class="codeinput">G_comp = G1+G2+G3+G4;
+</pre><pre class="codeinput">[num,den] = tfdata(G_comp);
+syms <span class="string">s</span>
+t_sym = poly2sym(cell2mat(num),s)/poly2sym(cell2mat(den),s);
+char = latex(t_sym)
+</pre><pre class="codeoutput">
+char =
+
+    '\frac{\frac{3603061052953437\,s^6}{268435456}+\frac{5133228042542267\,s^5}{131072}+34201960011978316\,s^4+53190017306428194816\,s^3+18535717911085316239785984\,s^2+10881908091434080772873519104\,s+1928359649544455558686253089030144}{s^8+\frac{7034612434488761\,s^7}{2199023255552}+\frac{5741166758948537\,s^6}{2097152}+\frac{2486760026298577\,s^5}{512}+1656442354377754880\,s^4+1218871679859894779904\,s^3+209140172229026439596343296\,s^2+21356621499507234816277872640\,s+1904834843397118558787398335987712}'
+
+</pre><p><img src="sysID_m_eq09596920556017011124.png" alt="$$\frac{\frac{3603061052953437\,s^6}{268435456}+\frac{5133228042542267\,s^5}{131072}+34201960011978316\,s^4+53190017306428194816\,s^3+18535717911085316239785984\,s^2+10881908091434080772873519104\,s+1928359649544455558686253089030144}{s^8+\frac{7034612434488761\,s^7}{2199023255552}+\frac{5741166758948537\,s^6}{2097152}+\frac{2486760026298577\,s^5}{512}+1656442354377754880\,s^4+1218871679859894779904\,s^3+209140172229026439596343296\,s^2+21356621499507234816277872640\,s+1904834843397118558787398335987712}$$"></p><pre class="codeinput">figure
+bode(G_comp)
+</pre><img vspace="5" hspace="5" src="sysID_m_06.png" alt=""> <p><b>Open Loop Simulation</b></p><pre class="codeinput">T = 2*(1/40);
+
+fs = 44100;
+t = 0:1/fs:T-1/fs;
+
+x = 1e-9*sawtooth(2*pi*40*t,1/2);
+x_model = lsim(G_comp,x,t);
+figure
+plot(t,x,t,x_model)
+axis(<span class="string">'tight'</span>)
+grid <span class="string">on</span>
+ylabel(<span class="string">'Displacement (nm)'</span>)
+xlabel(<span class="string">'time (seconds)'</span>)
+</pre><img vspace="5" hspace="5" src="sysID_m_07.png" alt=""> <img vspace="5" hspace="5" src="sysID_m_08.png" alt=""> <pre class="codeinput">error = x-x_model';
+figure
+plot(t,error)
+axis(<span class="string">'tight'</span>)
+ylabel(<span class="string">'Displacement (nm)'</span>)
+xlabel(<span class="string">'time (seconds)'</span>)
+</pre><img vspace="5" hspace="5" src="sysID_m_09.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+clc
+clear
+load('platform_resp.mat');
+%%
+%Read Magnitude and Phase Response from experimental data 
+Mag = abs(MagR);
+Phase = angle(MagR);
+%%
+figure
+semilogx(Freq,20*log10(Mag));
+xlabel('Frequency(Hz)')
+ylabel('Magnitude(dB)')
+axis('tight')
+title('Magnitude Response')
+%%
+figure
+semilogx(Freq,Phase)
+xlabel('Frequency(Hz)')
+ylabel('Phase')
+axis('tight')
+title('Phase Response (radians)')
+%% 
+% From the Frequency Response plots, there are 4 resonant modes induced in the 
+% system, hence it is modelled as 8 pole and 6 zeros system as a results of the 
+% location of the peaks and shalows in the magnitude response.  
+
+sys = frd(MagR,Freq*2*pi);
+G = tfest(sys,8,6);
+%%
+opts = bodeoptions('cstprefs');
+opts.PhaseVisible = 'off';
+opts.FreqUnits = 'Hz';
+semilogx(Freq,20*log10(Mag));
+hold on 
+bodeplot(G,opts,'red');
+legend('Nanopositioner ', 'Estimated System','Location','southwest')
+%%
+opts = bodeoptions('cstprefs');
+opts.PhaseUnits = 'rad';
+opts.MagVisible = 'off';
+opts.FreqUnits = 'Hz';
+semilogx(Freq,Phase);
+hold on 
+bodeplot(G,opts,'red');
+legend('Nanopositioner ', 'Estimated System','Location','southwest')
+%%
+G % estimated state space system 
+[r,p,k] = residue(G.Numerator,G.Denominator);
+%%
+[num_1,den_1] = residue(r(1:2),p(1:2),0);
+G1 = tf(real(num_1(2)),den_1);
+%% 
+% $$G_{1}(s) = \frac{7.22e05}{s^{2} + 1644s + 1.935e09}$$
+% 
+% 
+
+[num_2,den_2] = residue(r(3:4),p(3:4),0);
+G2 = tf(real(num_2(2)),den_2);
+%% 
+% $$G_{2}(s)= \frac{1.253e06}{s^{2} + 997s + 6.316e08}$$
+
+[num_3,den_3] = residue(r(5:6),p(5:6),0);
+G3 = tf(real(num_3(2)),den_3);
+%% 
+% $$G_{3}(s)= \frac{1.578e06}{s^{2} + 502.4s + 1.579e08}$$
+
+[num_4,den_4] = residue(r(7:8),p(7:8),0);
+G4 = tf(real(num_4(2)),den_4);
+%% 
+% $$G_{4}(s)= \frac{9.87e06}{s^{2} + 55.29s + 9.87e06}$$
+
+G_comp = G1+G2+G3+G4;
+%%
+[num,den] = tfdata(G_comp);
+syms s
+t_sym = poly2sym(cell2mat(num),s)/poly2sym(cell2mat(den),s);
+char = latex(t_sym)
+%% 
+% $$\frac{\frac{3603061052953437\,s^6}{268435456}+\frac{5133228042542267\,s^5}{131072}+34201960011978316\,s^4+53190017306428194816\,s^3+18535717911085316239785984\,s^2+10881908091434080772873519104\,s+1928359649544455558686253089030144}{s^8+\frac{7034612434488761\,s^7}{2199023255552}+\frac{5741166758948537\,s^6}{2097152}+\frac{2486760026298577\,s^5}{512}+1656442354377754880\,s^4+1218871679859894779904\,s^3+209140172229026439596343296\,s^2+21356621499507234816277872640\,s+1904834843397118558787398335987712}$$
+
+figure 
+bode(G_comp)
+%% 
+% 
+%% 
+% *Open Loop Simulation*
+
+T = 2*(1/40);
+
+fs = 44100;
+t = 0:1/fs:T-1/fs;
+
+x = 1e-9*sawtooth(2*pi*40*t,1/2);
+x_model = lsim(G_comp,x,t);
+figure
+plot(t,x,t,x_model)
+axis('tight')
+grid on
+ylabel('Displacement (nm)')
+xlabel('time (seconds)')
+%%
+error = x-x_model';
+figure 
+plot(t,error)
+axis('tight')
+ylabel('Displacement (nm)')
+xlabel('time (seconds)')
+##### SOURCE END #####
+--></body></html>
