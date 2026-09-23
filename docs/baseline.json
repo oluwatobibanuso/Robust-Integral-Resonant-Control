@@ -1,0 +1,201 @@
+{
+  "gains": {
+    "d": -2.0,
+    "kd": 1868.0396048145262,
+    "kt": 264.18069441787804
+  },
+  "model_relative_complex_l2_error": 0.0019059873592500573,
+  "metrics": [
+    {
+      "mode": "open",
+      "rms_error_nm": 0.0504481374155448,
+      "peak_error_nm": 0.0955740376295202,
+      "peak_input_equivalent_nm": 1.0,
+      "dc_gain": 1.0123506440310732,
+      "bandwidth_hz": 770.8633454828126,
+      "settling_2pct_s": 0.141025,
+      "max_pole_real_per_s": -27.645000000000095
+    },
+    {
+      "mode": "damping",
+      "rms_error_nm": 0.09202894351900462,
+      "peak_error_nm": 0.15865498502894568,
+      "peak_input_equivalent_nm": 0.9598007097346274,
+      "dc_gain": 1.0250101798911349,
+      "bandwidth_hz": 538.9473108087603,
+      "settling_2pct_s": 0.0056300000000000005,
+      "max_pole_real_per_s": -259.83721288858555
+    },
+    {
+      "mode": "tracking",
+      "rms_error_nm": 0.42623962275177907,
+      "peak_error_nm": 0.5698645100028631,
+      "peak_input_equivalent_nm": 0.6538062632594884,
+      "dc_gain": 1.0000000000000002,
+      "bandwidth_hz": 51.87319386475479,
+      "settling_2pct_s": 0.01271,
+      "max_pole_real_per_s": -259.787690171024
+    }
+  ],
+  "convergence_200khz_vs_400khz": {
+    "open": {
+      "max_output_difference_nm": 1.0505193779423451e-13,
+      "max_metric_difference_nm": 2.443099065413401e-07,
+      "fine_rms_error_nm": 0.05044838172545134
+    },
+    "damping": {
+      "max_output_difference_nm": 1.5716431638507526e-14,
+      "max_metric_difference_nm": 5.354953254849137e-07,
+      "fine_rms_error_nm": 0.0920294790143301
+    },
+    "tracking": {
+      "max_output_difference_nm": 9.615974620928947e-15,
+      "max_metric_difference_nm": 4.2489600468043065e-06,
+      "fine_rms_error_nm": 0.42623537379173226
+    }
+  },
+  "illustrative_parameter_sweep": [
+    {
+      "frequency_scale": 0.8,
+      "damping_scale": 0.5,
+      "max_pole_real_per_s": -108.6029210867548,
+      "stable": true,
+      "rms_error_nm": 0.4247200910610602,
+      "peak_error_nm": 0.5693526290142414,
+      "peak_input_equivalent_nm": 0.6590404459504514
+    },
+    {
+      "frequency_scale": 0.8,
+      "damping_scale": 1.0,
+      "max_pole_real_per_s": -209.14360628656277,
+      "stable": true,
+      "rms_error_nm": 0.42519744277693483,
+      "peak_error_nm": 0.5695129164833136,
+      "peak_input_equivalent_nm": 0.659753187612095
+    },
+    {
+      "frequency_scale": 0.8,
+      "damping_scale": 1.5,
+      "max_pole_real_per_s": -309.68518578621615,
+      "stable": true,
+      "rms_error_nm": 0.42567684047041027,
+      "peak_error_nm": 0.5696803677681598,
+      "peak_input_equivalent_nm": 0.6604641740742055
+    },
+    {
+      "frequency_scale": 0.9,
+      "damping_scale": 0.5,
+      "max_pole_real_per_s": -121.39862897411058,
+      "stable": true,
+      "rms_error_nm": 0.42537686140491676,
+      "peak_error_nm": 0.5692580855780512,
+      "peak_input_equivalent_nm": 0.6553633937840717
+    },
+    {
+      "frequency_scale": 0.9,
+      "damping_scale": 1.0,
+      "max_pole_real_per_s": -234.49551814203778,
+      "stable": true,
+      "rms_error_nm": 0.42580085768965914,
+      "peak_error_nm": 0.569472397806346,
+      "peak_input_equivalent_nm": 0.6560346322850141
+    },
+    {
+      "frequency_scale": 0.9,
+      "damping_scale": 1.5,
+      "max_pole_real_per_s": -320.7730516331406,
+      "stable": true,
+      "rms_error_nm": 0.4262262093998887,
+      "peak_error_nm": 0.569685250700827,
+      "peak_input_equivalent_nm": 0.6567051863378133
+    },
+    {
+      "frequency_scale": 1.0,
+      "damping_scale": 0.5,
+      "max_pole_real_per_s": -134.13447198650192,
+      "stable": true,
+      "rms_error_nm": 0.4258684747237663,
+      "peak_error_nm": 0.569681334521955,
+      "peak_input_equivalent_nm": 0.6531716662286952
+    },
+    {
+      "frequency_scale": 1.0,
+      "damping_scale": 1.0,
+      "max_pole_real_per_s": -259.787690171024,
+      "stable": true,
+      "rms_error_nm": 0.42624822685136055,
+      "peak_error_nm": 0.5698645100028623,
+      "peak_input_equivalent_nm": 0.6538062632594952
+    },
+    {
+      "frequency_scale": 1.0,
+      "damping_scale": 1.5,
+      "max_pole_real_per_s": -322.57686143815033,
+      "stable": true,
+      "rms_error_nm": 0.4266290936444916,
+      "peak_error_nm": 0.5700475501985632,
+      "peak_input_equivalent_nm": 0.6544377523117227
+    },
+    {
+      "frequency_scale": 1.1,
+      "damping_scale": 0.5,
+      "max_pole_real_per_s": -146.82855049913132,
+      "stable": true,
+      "rms_error_nm": 0.42623497115666964,
+      "peak_error_nm": 0.5699318920871438,
+      "peak_input_equivalent_nm": 0.6522326980006475
+    },
+    {
+      "frequency_scale": 1.1,
+      "damping_scale": 1.0,
+      "max_pole_real_per_s": -285.03834896808803,
+      "stable": true,
+      "rms_error_nm": 0.42657902502958606,
+      "peak_error_nm": 0.5700984670590078,
+      "peak_input_equivalent_nm": 0.652808139382893
+    },
+    {
+      "frequency_scale": 1.1,
+      "damping_scale": 1.5,
+      "max_pole_real_per_s": -323.9341913918592,
+      "stable": true,
+      "rms_error_nm": 0.42692399694583344,
+      "peak_error_nm": 0.570265238650328,
+      "peak_input_equivalent_nm": 0.6533815300266181
+    },
+    {
+      "frequency_scale": 1.2,
+      "damping_scale": 0.5,
+      "max_pole_real_per_s": -159.49278844242008,
+      "stable": true,
+      "rms_error_nm": 0.42651489971623263,
+      "peak_error_nm": 0.5701189419054097,
+      "peak_input_equivalent_nm": 0.6520379938084652
+    },
+    {
+      "frequency_scale": 1.2,
+      "damping_scale": 1.0,
+      "max_pole_real_per_s": -310.2594578291837,
+      "stable": true,
+      "rms_error_nm": 0.4268294219089114,
+      "peak_error_nm": 0.5702732352344275,
+      "peak_input_equivalent_nm": 0.6525450322409517
+    },
+    {
+      "frequency_scale": 1.2,
+      "damping_scale": 1.5,
+      "max_pole_real_per_s": -324.97610467837956,
+      "stable": true,
+      "rms_error_nm": 0.42714471339920784,
+      "peak_error_nm": 0.5704274231185137,
+      "peak_input_equivalent_nm": 0.6530513297912409
+    }
+  ],
+  "limitations": [
+    "Rounded historical model; no new system identification.",
+    "Normalized displacement-equivalent input, not calibrated voltage.",
+    "Continuous-time linear simulation; no hardware validation.",
+    "Sweep ranges are illustrative, not measured uncertainty.",
+    "No saturation, hysteresis, creep or digital delay model."
+  ]
+}
