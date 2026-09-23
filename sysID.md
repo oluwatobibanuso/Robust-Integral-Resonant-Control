@@ -1,3 +1,8 @@
+> **Historical MATLAB export — not the current executable baseline.**
+> Saved plots and outputs below retain the original analysis, including known unit,
+> feedback and sampling issues. See [corrected controller notes](docs/controller.md)
+> and run `python run_analysis.py` for the reproducible Python baseline.
+
 
 ```matlab:Code
 %%
@@ -226,4 +231,5 @@ xlabel('time (seconds)')
 
 
 ![figure_6.png](sysID_images/figure_6.png)
+
 
